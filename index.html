@@ -42,8 +42,15 @@
     flex-shrink: 0;
     padding: 18px 0 50px;
     box-shadow: 2px 0 14px rgba(40,60,120,0.04);
+    transition: width 0.3s ease, padding 0.3s ease;
+  }
+  .sidebar.collapsed {
+    width: 62px;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
   .sidebar::-webkit-scrollbar { width: 8px; }
+  .sidebar.collapsed::-webkit-scrollbar { width: 0; }
   .sidebar::-webkit-scrollbar-thumb { background: #d6deec; border-radius: 4px; }
   .sidebar::-webkit-scrollbar-track { background: transparent; }
 
@@ -51,10 +58,54 @@
     padding: 6px 22px 18px;
     font-size: 18px; font-weight: 800; color: var(--text); letter-spacing: 1px;
     display: flex; align-items: center; gap: 10px;
+    position: relative;
+    transition: padding 0.3s ease, justify-content 0.3s ease;
   }
+  .sidebar.collapsed .sidebar-title {
+    padding: 10px 8px 14px;
+    justify-content: center;
+  }
+  .sidebar.collapsed .sidebar-title .title-text { display: none; }
+  .sidebar.collapsed .sidebar-title .bar { display: none; }
   .sidebar-title .bar {
     width: 5px; height: 22px; border-radius: 3px;
     background: linear-gradient(180deg, var(--brand), var(--brand-deep));
+  }
+
+  /* 折叠/展开按钮 */
+  .sidebar-toggle {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px; height: 30px;
+    background: var(--sidebar-bg);
+    border: 1.5px solid var(--sidebar-border);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--text-dim);
+    transition: all 0.22s;
+    flex-shrink: 0;
+    margin-left: auto;
+    user-select: none;
+  }
+  .sidebar-toggle:hover {
+    background: var(--brand-soft);
+    border-color: var(--brand);
+    color: var(--brand);
+  }
+  .sidebar.collapsed .sidebar-toggle {
+    margin: 6px auto 10px;
+    position: static;
+  }
+  .sidebar.collapsed .sidebar-toggle::after {
+    content: '▶';
+  }
+  .sidebar:not(.collapsed) .sidebar-toggle::after {
+    content: '◀';
   }
 
   .map-group { margin-bottom: 4px; }
@@ -62,10 +113,28 @@
   .map-header {
     display: flex; align-items: center; gap: 12px;
     padding: 12px 20px; cursor: pointer; user-select: none;
-    transition: background 0.18s; border-left: 4px solid transparent;
+    transition: background 0.18s, padding 0.3s ease, justify-content 0.3s ease;
+    border-left: 4px solid transparent;
   }
   .map-header:hover { background: #f6f9fe; }
   .map-header.active-map { border-left-color: var(--brand); background: var(--brand-soft); }
+
+  .sidebar.collapsed .map-header {
+    padding: 10px 8px;
+    justify-content: center;
+    gap: 0;
+    border-left: none;
+    position: relative;
+  }
+  .sidebar.collapsed .map-header.active-map {
+    background: var(--brand-soft);
+    border-radius: 8px;
+  }
+  .sidebar.collapsed .map-header .map-name,
+  .sidebar.collapsed .map-header .lock-badge,
+  .sidebar.collapsed .map-header .chevron { display: none; }
+
+  .sidebar.collapsed .unit-list { display: none !important; }
 
   .map-header .map-icon {
     width: 26px;
@@ -88,6 +157,16 @@
     transition: transform 0.25s; margin-left: 4px;
   }
   .map-header.expanded .chevron { transform: rotate(90deg); }
+
+  /* tooltip for collapsed mode */
+  .sidebar.collapsed .map-header .map-tip {
+    display: none;
+    position: absolute; left: 68px; top: 50%; transform: translateY(-50%);
+    background: #333; color: #fff; font-size: 12px; font-weight: 600;
+    padding: 6px 12px; border-radius: 6px; white-space: nowrap;
+    z-index: 30; pointer-events: none;
+  }
+  .sidebar.collapsed .map-header:hover .map-tip { display: block; }
 
   .unit-list { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
   .unit-list.open { max-height: 1200px; }
@@ -262,7 +341,7 @@ let currentKnowledgeFile = null;  // 记住当前知识页面，用于返回
 function buildSidebar() {
   const title = document.createElement('div');
   title.className = 'sidebar-title';
-  title.innerHTML = '<span class="bar"></span>CodeCombat知识点';
+  title.innerHTML = '<span class="bar"></span><span class="title-text">CodeCombat知识点</span><button class="sidebar-toggle" onclick="toggleSidebar()" title="折叠/展开侧栏"></button>';
   sidebar.appendChild(title);
 
   MAPS.forEach((map) => {
@@ -276,6 +355,7 @@ function buildSidebar() {
       <span class="map-name">${map.name}</span>
       ${map.available ? '' : '<span class="lock-badge">开发中</span>'}
       <span class="chevron">▶</span>
+      <span class="map-tip">${map.name}</span>
     `;
 
     const list = document.createElement('div');
@@ -385,6 +465,24 @@ function showComingSoon(map) {
       <div class="dev-text">LOADING</div>
     </div>
   `;
+}
+
+function toggleSidebar() {
+  const isCollapsed = sidebar.classList.toggle('collapsed');
+  // 折叠时关闭所有展开的地图列表
+  if (isCollapsed) {
+    sidebar.querySelectorAll('.unit-list.open').forEach(l => l.classList.remove('open'));
+    sidebar.querySelectorAll('.map-header.expanded').forEach(h => h.classList.remove('expanded'));
+  } else {
+    // 展开时恢复默认展开前两张地图
+    const groups = sidebar.querySelectorAll('.map-group');
+    [0, 1].forEach(i => {
+      if (groups[i]) {
+        groups[i].querySelector('.unit-list').classList.add('open');
+        groups[i].querySelector('.map-header').classList.add('expanded');
+      }
+    });
+  }
 }
 
 /* 初始化：默认展开前两张地图 + 加载第一个文件 */
