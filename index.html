@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CodeCombat知识点</title>
+<title>CodeCombat知识体系</title>
 <style>
   :root {
     --bg-page: #f4f7fb;
@@ -56,7 +56,7 @@
 
   .sidebar-title {
     padding: 6px 22px 18px;
-    font-size: 18px; font-weight: 800; color: var(--text); letter-spacing: 1px;
+    font-size: 17px; font-weight: 800; color: var(--text); letter-spacing: 0.5px;
     display: flex; align-items: center; gap: 10px;
     position: relative;
     transition: padding 0.3s ease, justify-content 0.3s ease;
@@ -157,16 +157,6 @@
     transition: transform 0.25s; margin-left: 4px;
   }
   .map-header.expanded .chevron { transform: rotate(90deg); }
-
-  /* tooltip for collapsed mode */
-  .sidebar.collapsed .map-header .map-tip {
-    display: none;
-    position: absolute; left: 68px; top: 50%; transform: translateY(-50%);
-    background: #333; color: #fff; font-size: 12px; font-weight: 600;
-    padding: 6px 12px; border-radius: 6px; white-space: nowrap;
-    z-index: 30; pointer-events: none;
-  }
-  .sidebar.collapsed .map-header:hover .map-tip { display: block; }
 
   .unit-list { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
   .unit-list.open { max-height: 1200px; }
@@ -341,7 +331,7 @@ let currentKnowledgeFile = null;  // 记住当前知识页面，用于返回
 function buildSidebar() {
   const title = document.createElement('div');
   title.className = 'sidebar-title';
-  title.innerHTML = '<span class="bar"></span><span class="title-text">CodeCombat知识点</span><button class="sidebar-toggle" onclick="toggleSidebar()" title="折叠/展开侧栏"></button>';
+  title.innerHTML = '<span class="bar"></span><span class="title-text">CodeCombat知识体系</span><button class="sidebar-toggle" onclick="toggleSidebar()" title="折叠/展开侧栏"></button>';
   sidebar.appendChild(title);
 
   MAPS.forEach((map) => {
@@ -355,7 +345,6 @@ function buildSidebar() {
       <span class="map-name">${map.name}</span>
       ${map.available ? '' : '<span class="lock-badge">开发中</span>'}
       <span class="chevron">▶</span>
-      <span class="map-tip">${map.name}</span>
     `;
 
     const list = document.createElement('div');
