@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>第二单元：程序、编程、注释、字符串与调试 | 扣哒世界 编程知识</title>
+    <title>第二单元：程序、编程、注释、字符串与调试 | CodeCombat 编程知识</title>
     <style>
         /* ===== 基础重置与变量 ===== */
         :root {
@@ -606,7 +606,7 @@
 
 <p><span class="keyword">语句</span>是程序中的最小执行单元——一条完整的指令，告诉计算机做一件事。在 Python 中，通常一行就是一条语句。</p>
 
-<p>在 扣哒世界 的第 7–9 关中，你会遇到这些类型的语句：</p>
+<p>在 CodeCombat 的第 7–9 关中，你会遇到这些类型的语句：</p>
 <ul style="margin: 10px 0 10px 24px; list-style: none;">
     <li>● 移动语句：<code>hero.moveRight()</code>——让英雄移动</li>
     <li>● 攻击语句：<code>hero.attack("Brak")</code>——让英雄攻击</li>
@@ -666,7 +666,7 @@
 
 <p>Python 解释器的工作方式是：<span class="keyword">读一行 → 翻译一行 → 执行一行 → 读下一行……</span></p>
 
-<p>在 扣哒世界 中，你能清楚地观察到这个过程——代码左侧会有一个高亮标记，显示当前执行到了哪一行。塔林执行完 <code>hero.moveRight()</code> 之后，解释器才会去读 <code>hero.attack("Brak")</code>。</p>
+<p>在 CodeCombat 中，你能清楚地观察到这个过程——代码左侧会有一个高亮标记，显示当前执行到了哪一行。塔林执行完 <code>hero.moveRight()</code> 之后，解释器才会去读 <code>hero.attack("Brak")</code>。</p>
 
 <h4>2.1.2.3 编译 vs. 解释
     <span class="en">Compilation vs. Interpretation，简要对比</span>
@@ -686,13 +686,13 @@
     <span class="en">Python is an interpreted language</span>
 </h4>
 
-<p>Python 是<span class="keyword">解释型语言</span>——写完代码点击"运行"就能立即看到效果，不需要等待编译过程。这就是为什么 扣哒世界 中你修改一行代码后，立刻就能重新运行看到不同的结果。</p>
+<p>Python 是<span class="keyword">解释型语言</span>——写完代码点击"运行"就能立即看到效果，不需要等待编译过程。这就是为什么 CodeCombat 中你修改一行代码后，立刻就能重新运行看到不同的结果。</p>
 
 <h4>2.1.2.5 运行时（Runtime）的概念
     <span class="en">Concept of runtime</span>
 </h4>
 
-<p><span class="keyword">运行时（Runtime）</span>就是"程序正在运行的那段时间"。在 扣哒世界 中，从你点击"运行"按钮到英雄完成任务（或失败），这整个过程就是运行时。运行时出现的错误叫"运行时错误"（后面会学到）。</p>
+<p><span class="keyword">运行时（Runtime）</span>就是"程序正在运行的那段时间"。在 CodeCombat 中，从你点击"运行"按钮到英雄完成任务（或失败），这整个过程就是运行时。运行时出现的错误叫"运行时错误"（后面会学到）。</p>
 
 <!-- ===== 2.1.3 ===== -->
 <h3 id="sec-2-1-3">2.1.3 程序的输入与输出（Program Input and Output）</h3>
@@ -701,7 +701,7 @@
     <span class="en">Data that a program receives</span>
 </h4>
 
-<p><span class="keyword">输入（Input）</span>是程序从外部接收的信息。在 扣哒世界 中，输入包括：地图布局（墙壁、尖刺、敌人的位置）、敌人的名字（如 "Brak"、"Treg"）、关卡目标（收集宝石、消灭食人魔）。</p>
+<p><span class="keyword">输入（Input）</span>是程序从外部接收的信息。在 CodeCombat 中，输入包括：地图布局（墙壁、尖刺、敌人的位置）、敌人的名字（如 "Brak"、"Treg"）、关卡目标（收集宝石、消灭食人魔）。</p>
 
 <p>你在写代码之前观察地图，获取这些"输入信息"，然后用代码做出相应的决策。</p>
 
@@ -709,7 +709,7 @@
     <span class="en">Results that a program produces</span>
 </h4>
 
-<p><span class="keyword">输出（Output）</span>是程序执行后产生的效果。在 扣哒世界 中，输出就是英雄的行为：安雅移动了、塔林攻击了食人魔、敌人被消灭了——这些都是你的程序的"输出"。</p>
+<p><span class="keyword">输出（Output）</span>是程序执行后产生的效果。在 CodeCombat 中，输出就是英雄的行为：安雅移动了、塔林攻击了食人魔、敌人被消灭了——这些都是你的程序的"输出"。</p>
 
 <h4>2.1.3.3 hero.say() 作为一种输出方式
     <span class="en">hero.say() as output</span>
@@ -734,7 +734,7 @@
 <span class="fn">print</span><span class="punc">(</span><span class="num">3</span> + <span class="num">2</span><span class="punc">)</span>              <span class="cmt"># 显示计算结果：5</span></pre>
 </div>
 
-<p>在 扣哒世界 中你主要用 <code>hero.say()</code>，但 <code>print()</code> 在以后的纯 Python 编程中会变得非常重要。</p>
+<p>在 CodeCombat 中你主要用 <code>hero.say()</code>，但 <code>print()</code> 在以后的纯 Python 编程中会变得非常重要。</p>
 
 <!-- ==================== 2.2 ==================== -->
 <div class="section-header" id="section-2-2">
@@ -809,7 +809,7 @@ Brak        <span class="cmt"># ✗ 这不是字符串！这是一个变量名</
 <span class="obj">hero</span><span class="punc">.</span><span class="fn">say</span><span class="punc">(</span><span class="str">"Hello!"</span><span class="punc">)</span>    <span class="cmt"># 双引号包围的字符串</span></pre>
 </div>
 
-<p>在 扣哒世界 中，你看到的字符串基本都用双引号。</p>
+<p>在 CodeCombat 中，你看到的字符串基本都用双引号。</p>
 
 <h4>2.2.2.2 单引号 'Hello'
     <span class="en">Single quotes</span>
@@ -827,7 +827,7 @@ Brak        <span class="cmt"># ✗ 这不是字符串！这是一个变量名</
     <span class="en">Equivalence of single and double quotes</span>
 </h4>
 
-<p><code>"Brak"</code> 和 <code>'Brak'</code> 是<strong>完全一样</strong>的。选哪种都行，只要保持一致就好。扣哒世界 中默认使用双引号，建议你也用双引号。</p>
+<p><code>"Brak"</code> 和 <code>'Brak'</code> 是<strong>完全一样</strong>的。选哪种都行，只要保持一致就好。CodeCombat 中默认使用双引号，建议你也用双引号。</p>
 
 <h4>2.2.2.4 引号的配对规则
     <span class="en">Matching quote rules</span>
@@ -1086,7 +1086,7 @@ Brak        <span class="cmt"># ✗ 这不是字符串！这是一个变量名</
     <span class="en">Comments as communication between programmers</span>
 </h4>
 
-<p>在团队合作中，注释就像队友之间的留言条。在 扣哒世界 中，关卡的默认代码里经常有注释给你提示——这就是游戏设计师在通过注释和你"沟通"。</p>
+<p>在团队合作中，注释就像队友之间的留言条。在 CodeCombat 中，关卡的默认代码里经常有注释给你提示——这就是游戏设计师在通过注释和你"沟通"。</p>
 
 <!-- ===== 2.3.2 ===== -->
 <h3 id="sec-2-3-2">2.3.2 Python 注释语法（Python Comment Syntax）</h3>
@@ -1166,7 +1166,7 @@ Brak        <span class="cmt"># ✗ 这不是字符串！这是一个变量名</
 """</span></pre>
 </div>
 
-<p>在 扣哒世界 中，我们通常只用 <code>#</code> 号。</p>
+<p>在 CodeCombat 中，我们通常只用 <code>#</code> 号。</p>
 
 <!-- ===== 2.3.3 ===== -->
 <h3 id="sec-2-3-3">2.3.3 注释的最佳实践（Best Practices for Comments）</h3>
@@ -1245,7 +1245,7 @@ Brak        <span class="cmt"># ✗ 这不是字符串！这是一个变量名</
     <span class="en">Reading comments for clues and guidance</span>
 </h4>
 
-<p>在 扣哒世界 中，关卡的默认代码里经常有注释提示。比如第 9 关"睡眠时刻"的开头：</p>
+<p>在 CodeCombat 中，关卡的默认代码里经常有注释提示。比如第 9 关"睡眠时刻"的开头：</p>
 
 <div class="code-block">
     <div class="dots"><span class="red"></span><span class="yellow"></span><span class="green"></span></div>
@@ -1435,7 +1435,7 @@ Brak        <span class="cmt"># ✗ 这不是字符串！这是一个变量名</
     <div class="caption">图14：Bug 就是让程序出问题的"小虫子"</div>
 </div>
 
-<p><span class="keyword">Bug</span> 就是程序中的错误——任何导致程序不能正常工作的问题都叫 Bug。在 扣哒世界 中，Bug 可能导致安雅走错路、攻击失败、或者代码根本无法运行。</p>
+<p><span class="keyword">Bug</span> 就是程序中的错误——任何导致程序不能正常工作的问题都叫 Bug。在 CodeCombat 中，Bug 可能导致安雅走错路、攻击失败、或者代码根本无法运行。</p>
 
 <h4>2.6.1.2 Bug 一词的历史由来
     <span class="en">Historical origin of the term "bug"</span>
@@ -1584,7 +1584,7 @@ Brak        <span class="cmt"># ✗ 这不是字符串！这是一个变量名</
     <span class="en">Use playback/run to observe results</span>
 </h4>
 
-<p>在 扣哒世界 中，拖动回放进度条可以逐步观察英雄的行为，看看他在哪一步开始出错的。</p>
+<p>在 CodeCombat 中，拖动回放进度条可以逐步观察英雄的行为，看看他在哪一步开始出错的。</p>
 
 <h4>2.6.4.7 删除或注释掉可疑代码
     <span class="en">Comment out suspicious code</span>
@@ -1711,7 +1711,7 @@ Brak        <span class="cmt"># ✗ 这不是字符串！这是一个变量名</
     <span class="en">Navigation directions analogy</span>
 </h4>
 
-<p>GPS 给你的路线指示也是顺序结构："直行200米 → 右转 → 直行500米 → 到达目的地"。扣哒世界 中的代码就像英雄的 GPS！</p>
+<p>GPS 给你的路线指示也是顺序结构："直行200米 → 右转 → 直行500米 → 到达目的地"。CodeCombat 中的代码就像英雄的 GPS！</p>
 
 <h4>2.7.2.4 顺序结构的局限性
     <span class="en">Limitations of pure sequential structure</span>
@@ -1764,7 +1764,7 @@ Brak        <span class="cmt"># ✗ 这不是字符串！这是一个变量名</
     <span class="en">Output to console</span>
 </h4>
 
-<p><code>print()</code> 在传统 Python 开发中是最常用的输出方式。它把信息显示在终端/控制台中。虽然 扣哒世界 中主要用 <code>hero.say()</code>，但 <code>print()</code> 在后续课程中会频繁出现。</p>
+<p><code>print()</code> 在传统 Python 开发中是最常用的输出方式。它把信息显示在终端/控制台中。虽然 CodeCombat 中主要用 <code>hero.say()</code>，但 <code>print()</code> 在后续课程中会频繁出现。</p>
 
 <h4>2.8.2.2 type() —— 查看数据类型
     <span class="en">Check data type</span>
@@ -1779,8 +1779,7 @@ Brak        <span class="cmt"># ✗ 这不是字符串！这是一个变量名</
 <p><code>len("Brak")</code> 返回 <code>4</code>——表示这个字符串有 4 个字符。在后续关卡中处理数组和列表时，<code>len()</code> 会非常有用。</p>
 
 <!-- ==================== 小结 ==================== -->
-<div class="summary-card" id="section-summary">
-    <h3>本单元小结 ✨</h3>
+<div class="summary-card" id="section-summary"><h3>本单元小结 ✨</h3>
 
     <div class="figure">
         <img src="https://assets.koudashijie.com/knowledge/2-summary_card.png" alt="单元总结">
@@ -1830,12 +1829,14 @@ Brak        <span class="cmt"># ✗ 这不是字符串！这是一个变量名</
     </p>
 </div>
 
-</div><!-- end container -->
 
-<div style="background: var(--dark); color: #aaa; text-align: center; padding: 30px 20px; font-size: 0.85em;">
-    <p>CodeCombat 编程知识 · 计算机科学入门（暗影地牢）：第二单元</p>
-    <p style="margin-top:8px; color:#666;">扣哒世界（CodeCombat ）教研团队</p>
+<div class="member-promo" style="background: linear-gradient(135deg,#fff3e0 0%,#fff 100%); border: 2px solid #f59e0b; border-radius: 14px; padding: 24px 28px; margin: 30px 0; text-align: center;">
+    <h3 style="color: #d35400; border: none; margin-top: 0; font-size: 1.3em;">🎮 想在 CodeCombat 中实战这些关卡吗？</h3>
+    <p style="margin: 10px 0; font-size: 1.05em;">加入 <strong>CodeCombat（codecombat.cn）</strong> 会员，即可解锁全部编程关卡，跟随英雄安雅和塔林在真实游戏环境中边玩边学！通过实战闯关巩固本单元所学的每一个知识点，让编程学习不再枯燥。</p>
+    <p style="margin: 10px 0; color: #555;">立即访问 <a href="https://codecombat.cn" target="_blank" style="color: #d35400; font-weight: 700; text-decoration: none;">codecombat.cn</a> 开启你的 CodeCombat 编程冒险之旅！</p>
 </div>
+
+
 
 </div><!-- end page-wrapper -->
 

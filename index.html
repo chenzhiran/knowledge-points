@@ -189,32 +189,8 @@
   .frame-wrap { flex: 1; position: relative; }
   iframe.unit-frame { width: 100%; height: 100%; border: none; background: #fff; display: block; }
 
-  .quiz-fab {
-    position: absolute; right: 28px; bottom: 28px; z-index: 20;
-    display: inline-flex; align-items: center; gap: 9px;
-    padding: 13px 24px; border: none; cursor: pointer;
-    font-size: 15px; font-weight: 700; color: #fff;
-    border-radius: 30px;
-    background: linear-gradient(135deg, #fbbf24, #f59e0b);
-    box-shadow: 0 8px 22px rgba(245,158,11,0.4);
-    transition: transform 0.18s, box-shadow 0.18s;
-    font-family: inherit;
-  }
-  .quiz-fab:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(245,158,11,0.5); }
-  .quiz-fab:active { transform: translateY(-1px); }
-  .quiz-fab .quiz-icon {
-    width: 20px; height: 20px; display: inline-flex; align-items: center; justify-content: center;
-    background: rgba(255,255,255,0.28); border-radius: 50%;
-    font-size: 13px; font-weight: 800;
-  }
 
-  /* 返回按钮 —— 蓝色系，与测试按钮区分 */
-  .return-fab {
-    background: linear-gradient(135deg, #60a5fa, #3b82f6) !important;
-    box-shadow: 0 8px 22px rgba(59,130,246,0.4) !important;
-    right: 28px; bottom: 28px;
-  }
-  .return-fab:hover { box-shadow: 0 12px 28px rgba(59,130,246,0.5) !important; }
+
 
   /* ===================== 开发中占位 ===================== */
   .placeholder {
@@ -326,12 +302,11 @@ const MAPS = [
 
 const sidebar = document.getElementById('sidebar');
 const content = document.getElementById('content');
-let currentKnowledgeFile = null;  // 记住当前知识页面，用于返回
 
 function buildSidebar() {
   const title = document.createElement('div');
   title.className = 'sidebar-title';
-  title.innerHTML = '<span class="bar"></span><span class="title-text">CodeCombat知识体系</span><button class="sidebar-toggle" onclick="toggleSidebar()" title="折叠/展开侧栏"></button>';
+  title.innerHTML = '<span class="bar"></span><span class="title-text">CodeCombat知识体系 <span style="font-size:0.7em;font-weight:500;">官网链接</span> <a href="https://codecombat.cn" style="color:#3b82f6;text-decoration:none;font-size:0.7em;font-weight:500;" target="_blank">codecombat.cn</a></span><button class="sidebar-toggle" onclick="toggleSidebar()" title="折叠/展开侧栏"></button>';
   sidebar.appendChild(title);
 
   MAPS.forEach((map) => {
@@ -402,42 +377,12 @@ function selectUnit(map, ui) {
   if (el) el.closest('.map-group').querySelector('.map-header').classList.add('active-map');
 
   const unit = map.units[ui];
-  const quizFile = unit.file.replace('.html', '_quiz.html');
-  currentKnowledgeFile = unit.file;  // 记住当前知识点页面
 
   content.innerHTML = `
     <div class="frame-wrap">
       <iframe class="unit-frame" src="${unit.file}"></iframe>
-      <button class="quiz-fab" onclick="openQuiz('${quizFile}')">
-        <span class="quiz-icon">?</span>学会了，测试一下
-      </button>
     </div>
   `;
-}
-
-function openQuiz(quizFile) {
-  content.innerHTML = `
-    <div class="frame-wrap">
-      <iframe class="unit-frame" src="${quizFile}"></iframe>
-      <button class="quiz-fab return-fab" onclick="returnToKnowledge()">
-        <span class="quiz-icon">←</span>返回继续学习
-      </button>
-    </div>
-  `;
-}
-
-function returnToKnowledge() {
-  if (currentKnowledgeFile) {
-    const quizFile = currentKnowledgeFile.replace('.html', '_quiz.html');
-    content.innerHTML = `
-      <div class="frame-wrap">
-        <iframe class="unit-frame" src="${currentKnowledgeFile}"></iframe>
-        <button class="quiz-fab" onclick="openQuiz('${quizFile}')">
-          <span class="quiz-icon">?</span>学会了，测试一下
-        </button>
-      </div>
-    `;
-  }
 }
 
 function showComingSoon(map) {
@@ -449,7 +394,8 @@ function showComingSoon(map) {
       <div class="ph-badge">${initial}</div>
       <h2>${map.name} · 开发中</h2>
       <p>这片地图尚未解锁。我们正在打磨每一关的知识点与示例，很快就能与你并肩闯关。
-      请先在「暗影地牢」与「边际森林」中磨练你的代码剑术！</p>
+      请先在「暗影地牢」与「边际森林」中磨练你的代码剑术！<br>
+      加入 <strong>CodeCombat（codecombat.cn）</strong> 会员，抢先体验全部关卡实战！</p>
       <div class="dev-bar"><span></span></div>
       <div class="dev-text">LOADING</div>
     </div>
@@ -484,6 +430,17 @@ const groups = sidebar.querySelectorAll('.map-group');
   }
 });
 selectUnit(MAPS[0], 0);
+
+const footer = document.createElement('div');
+footer.style.cssText = 'position:fixed;bottom:0;left:300px;right:0;background:linear-gradient(90deg,#1a1a2e,#2c3344);color:#ccc;text-align:center;padding:8px 20px;font-size:13px;z-index:50;border-top:2px solid #f59e0b;';
+footer.innerHTML = '⭐ CodeCombat 编程学习平台 · 官网 codecombat.cn · 加入会员 解锁全部关卡，边玩边学编程！';
+document.body.appendChild(footer);
+
+document.getElementById('sidebar').addEventListener('transitionend', function(e) {
+  if (e.propertyName === 'width') {
+    footer.style.left = getComputedStyle(this).width;
+  }
+});
 </script>
 </body>
 </html>

@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>第一单元：笛卡尔坐标、moveXY 与 buildXY 基础 | 扣哒世界 编程知识</title>
+    <title>第一单元：笛卡尔坐标、moveXY 与 buildXY 基础 | CodeCombat 编程知识</title>
     <style>
         /* ===== 基础重置与变量 ===== */
         :root {
@@ -424,7 +424,7 @@
     <a href="#sec-1-3-1" class="nav-sub">1.3.1 从一维到二维</a>
     <a href="#sec-1-3-2" class="nav-sub">1.3.2 x 轴与 y 轴</a>
     <a href="#sec-1-3-3" class="nav-sub">1.3.3 原点与象限</a>
-    <a href="#sec-1-3-4" class="nav-sub">1.3.4 扣哒世界的地图坐标</a>
+    <a href="#sec-1-3-4" class="nav-sub">1.3.4 CodeCombat的地图坐标</a>
 
     <a href="#section-1-4" class="nav-section">1.4 坐标 (x, y)</a>
     <a href="#sec-1-4-1" class="nav-sub">1.4.1 有序数对</a>
@@ -533,7 +533,7 @@
 <p>坐标系不只是数学课本里的东西，它是几乎所有<span class="keyword">计算机图形（Computer Graphics）</span>的基础。你手机屏幕上的每一个像素、电子游戏里每个角色的位置、地图软件里的每个地点，背后都是一对对坐标在工作。学会用坐标思考，是你迈向更复杂编程的重要一步。</p>
 
 <div class="tip-box">
-    <span class="tip-label">小提示：</span>在屏幕和很多游戏里，y 轴有时是"向下为正"的。但在扣哒世界的边际森林地图中，遵循数学习惯：<strong>x 向右增大，y 向上增大</strong>。
+    <span class="tip-label">小提示：</span>在屏幕和很多游戏里，y 轴有时是"向下为正"的。但在CodeCombat的边际森林地图中，遵循数学习惯：<strong>x 向右增大，y 向上增大</strong>。
 </div>
 
 <!-- ==================== 1.2 ==================== -->
@@ -699,13 +699,13 @@
     <span class="en">The four quadrants</span>
 </h4>
 
-<p>两条轴把平面分成了四块区域，每一块叫做一个<span class="keyword">象限（Quadrant）</span>。按照数学惯例，从右上角开始，逆时针依次编号为第一、二、三、四象限。第一象限里 x 和 y 都是正数——这也是扣哒世界地图最常用的区域。</p>
+<p>两条轴把平面分成了四块区域，每一块叫做一个<span class="keyword">象限（Quadrant）</span>。按照数学惯例，从右上角开始，逆时针依次编号为第一、二、三、四象限。第一象限里 x 和 y 都是正数——这也是CodeCombat地图最常用的区域。</p>
 
 <div class="info-box">
     <span class="info-label">好消息：</span>在边际森林的关卡里，所有坐标都是正数（位于第一象限），所以你暂时不用担心负坐标。但理解象限的概念，会让你在更高级的地图里更从容。
 </div>
 
-<h3 id="sec-1-3-4">1.3.4 扣哒世界的地图坐标（CodeCombat Map Coordinates）</h3>
+<h3 id="sec-1-3-4">1.3.4 CodeCombat的地图坐标（CodeCombat Map Coordinates）</h3>
 
 <h4>1.3.4.1 地图就是一张大坐标纸
     <span class="en">The map is a giant coordinate grid</span>
@@ -788,7 +788,7 @@
     <div class="caption">图8：把鼠标悬停在地图任意位置，即可看到该处的 x 和 y 坐标</div>
 </div>
 
-<p>你怎么知道一个目标的坐标是多少？非常简单：<strong>把鼠标悬停在地图上的任意位置，扣哒世界就会显示出那个位置的 x 和 y 坐标。</strong> 这是边际森林里你最常用的小技巧——想让英雄去哪、想在哪建围栏，先把鼠标移过去看一眼坐标，再把数字填进代码里。</p>
+<p>你怎么知道一个目标的坐标是多少？非常简单：<strong>把鼠标悬停在地图上的任意位置，CodeCombat就会显示出那个位置的 x 和 y 坐标。</strong> 这是边际森林里你最常用的小技巧——想让英雄去哪、想在哪建围栏，先把鼠标移过去看一眼坐标，再把数字填进代码里。</p>
 
 <div class="tip-box">
     <span class="tip-label">实用流程：</span>① 鼠标悬停目标位置 → ② 记下显示的 (x, y) → ③ 写进 <code>moveXY(x, y)</code> 或 <code>buildXY("类型", x, y)</code> → ④ 运行检查。
@@ -1040,8 +1040,7 @@
 </div>
 
 <!-- ==================== 小结 ==================== -->
-<div class="summary-card" id="section-summary">
-    <h3>本单元小结 ✨</h3>
+<div class="summary-card" id="section-summary"><h3>本单元小结 ✨</h3>
 
     <p>恭喜你完成了边际森林第一单元！你已经从"相对移动"升级到了"坐标定位"，掌握了用一对数字精确指挥英雄的能力。来回顾一下核心概念：</p>
 
@@ -1066,12 +1065,14 @@
     </p>
 </div>
 
-</div><!-- end container -->
 
-<div style="background: var(--dark); color: #9db0a4; text-align: center; padding: 30px 20px; font-size: 0.85em;">
-    <p>扣哒世界 编程知识 · 计算机科学2（边际森林）：第一单元</p>
-    <p style="margin-top:8px; color:#5e7567;">扣哒世界（CodeCombat）教研团队</p>
+<div class="member-promo" style="background: linear-gradient(135deg,#e8f5e9 0%,#fff 100%); border: 2px solid #2E9E5B; border-radius: 14px; padding: 24px 28px; margin: 30px 0; text-align: center;">
+    <h3 style="color: #1F7A44; border: none; margin-top: 0; font-size: 1.3em;">🎮 想在 CodeCombat 中实战这些关卡吗？</h3>
+    <p style="margin: 10px 0; font-size: 1.05em;">加入 <strong>CodeCombat（codecombat.cn）</strong> 会员，即可解锁全部编程关卡，跟随英雄安雅和塔林在真实游戏环境中边玩边学！通过实战闯关巩固本单元所学的每一个知识点，让编程学习不再枯燥。</p>
+    <p style="margin: 10px 0; color: #555;">立即访问 <a href="https://codecombat.cn" target="_blank" style="color: #1F7A44; font-weight: 700; text-decoration: none;">codecombat.cn</a> 开启你的 CodeCombat 编程冒险之旅！</p>
 </div>
+
+
 
 </div><!-- end page-wrapper -->
 
